@@ -9,7 +9,7 @@ namespace ScreenSound.Banco
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_connectionString);
+            optionsBuilder.UseSqlServer(_connectionString).UseLazyLoadingProxies();
         }
         
         public DbSet<Artista> Artistas { get; set; }

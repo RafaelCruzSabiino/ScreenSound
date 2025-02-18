@@ -34,5 +34,8 @@ namespace ScreenSound.Banco
 
         public T? RecuperarPor(Func<T, bool> condicao)
             => context.Set<T>().FirstOrDefault(condicao);
+
+        public IEnumerable<T> ListarPor(Func<T, bool> condicao)
+            => context.Set<T>().Where(condicao);
     }
 }
