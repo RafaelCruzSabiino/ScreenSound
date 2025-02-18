@@ -1,8 +1,9 @@
 ﻿using ScreenSound.Banco;
 using ScreenSound.Menus;
+using ScreenSound.Modelos;
 
 ScreenSoundContext context = new();
-ArtistaDal artistaDal = new(context);
+Dal<Artista> artistaDal = new(context);
 
 Dictionary<int, Menu> opcoes = new();
 opcoes.Add(1, new MenuRegistrarArtista());
