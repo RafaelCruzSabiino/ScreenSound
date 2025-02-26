@@ -2,7 +2,7 @@
 
 namespace ScreenSound.Banco
 {
-    internal class Dal<T> where T : class
+    public class Dal<T> where T : class
     {
         protected readonly ScreenSoundContext context;
 
