@@ -18,5 +18,12 @@ namespace ScreenSound.Banco
         public DbSet<Musica> Musicas { get; set; }
 
         public DbSet<Genero> Generos { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Musica>()
+                .HasMany(c => c.Generos)
+                .WithMany(c => c.Musicas);
+        }
     }
 }
