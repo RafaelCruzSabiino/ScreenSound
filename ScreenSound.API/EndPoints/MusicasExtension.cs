@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ScreenSound.API.Requests;
 using ScreenSound.Banco;
+using ScreenSound.Model.Modelos;
 using ScreenSound.Modelos;
 
 namespace ScreenSound.API.EndPoints
@@ -29,7 +30,9 @@ namespace ScreenSound.API.EndPoints
             {
                 var musica = new Musica(musicaRequest.Nome) 
                 {
-                    AnoLancamento = musicaRequest.AnoLancamento
+                    ArtistaId = musicaRequest.ArtistaId,
+                    AnoLancamento = musicaRequest.AnoLancamento,
+                    Generos = musicaRequest.Generos is null ? [] : GeneroRequestConverter(musicaRequest.Generos)
                 };
 
                 dal.Adicionar(musica);
@@ -60,6 +63,16 @@ namespace ScreenSound.API.EndPoints
                 dal.Atualizar(musicaAAtualizar);
                 return Results.Ok();
             });
+        }
+
+        private static ICollection<Genero> GeneroRequestConverter(ICollection<GeneroRequest> generos)
+        {
+            return generos.Select(a => RequestToEntity(a)).ToList();
+        }
+
+        private static Genero RequestToEntity(GeneroRequest genero)
+        {
+            return new Genero() { Nome = genero.Nome, Descricao = genero.Descricao };
         }
     }
 }
