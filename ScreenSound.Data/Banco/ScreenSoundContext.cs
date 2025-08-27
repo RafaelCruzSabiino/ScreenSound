@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ScreenSound.Model.Modelos;
 using ScreenSound.Modelos;
 
 namespace ScreenSound.Banco
@@ -15,5 +16,7 @@ namespace ScreenSound.Banco
         public DbSet<Artista> Artistas { get; set; }
 
         public DbSet<Musica> Musicas { get; set; }
+
+        public DbSet<Genero> Generos { get; set; }
     }
 }
